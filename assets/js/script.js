@@ -31,7 +31,7 @@ function startGame() {
             }
             timeEl.innerText = timeLeft;
         
-            console.log(timeLeft);
+            
          },1000)
     
     question();
@@ -62,7 +62,15 @@ startEl.addEventListener("click", startGame);
 
     function checkAnswer() {
 
-    console.log(aOne.innerText);
+        aOne.onclick=function(){
+            if(aOne.innerText == questionBox[questionIndex].a) {
+                var resultEl=document.getElementById("result");
+                    resultEl.textContent = "You are correct!";
+                    score++;  
+                    console.log("hello");    
+            }
+        }
+
         if (aOne.innerText == questionBox[questionIndex].a ||
             aTwo.innerText == questionBox[questionIndex].a ||
             aThree.innerText == questionBox[questionIndex].a ||
