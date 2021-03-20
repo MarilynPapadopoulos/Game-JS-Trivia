@@ -24,14 +24,9 @@ function startGame() {
             if(timeLeft <= 0) {
             clearInterval(timerId);
             }
-<<<<<<< HEAD
             timeEl.innerText = timeLeft;
         
             
-=======
-            timeEl.innerText = "Time left " +timeLeft;
-
->>>>>>> main
          },1000)
     
     question();
@@ -71,16 +66,13 @@ startEl.addEventListener("click", startGame);
 };
 
     function checkAnswer() {
-<<<<<<< HEAD
 
-        aOne.onclick=function(){
-            if(aOne.innerText == questionBox[questionIndex].a) {
-                var resultEl=document.getElementById("result");
-                    resultEl.textContent = "You are correct!";
-                    score++;  
-                    console.log("hello");    
-            }
-        }
+        var questionBox = [
+            {q:"This is the first question.", choices:["1", "2", "3","4"], a: "1"},
+            {q:"This is the second question.", choices:["11", "22", "33","44"], a: "22"},
+            {q:"This is the third question.", choices:["5", "6", "7","8"], a: "7"},
+            {q:"This is the fourth question.", choices:["10", "20", "30","40"], a: "40"}
+        ];
 
         if (aOne.innerText == questionBox[questionIndex].a ||
             aTwo.innerText == questionBox[questionIndex].a ||
@@ -89,22 +81,6 @@ startEl.addEventListener("click", startGame);
 
 
             {
-=======
-       
-        var questionBox = [
-            {q:"This is the first question.", choices:["1", "2", "3","4"], a: "1"},
-            {q:"This is the second question.", choices:["11", "22", "33","44"], a: "22"},
-            {q:"This is the third question.", choices:["5", "6", "7","8"], a: "7"},
-            {q:"This is the fourth question.", choices:["10", "20", "30","40"], a: "40"}
-        ];
-
-    console.log("index check answer" + questionIndex);
-
-        if (aOne.innerText === questionBox[questionIndex].a ||
-            aTwo.innerText === questionBox[questionIndex].a ||
-            aThree.innerText === questionBox[questionIndex].a ||
-            aFour.innerText === questionBox[questionIndex].a) {
->>>>>>> main
                 var resultEl=document.getElementById("result");
                     resultEl.textContent = "You are correct!";
                     score++;  
@@ -116,8 +92,8 @@ startEl.addEventListener("click", startGame);
                 timeLeft -=5;
                 console.log(timeLeft); 
             }
-            questionIndex++;
-            question(); 
+               questionIndex++;
+               question(); 
     }  
 
    
