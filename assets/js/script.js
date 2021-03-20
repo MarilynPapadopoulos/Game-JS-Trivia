@@ -9,9 +9,14 @@ var aTwo = document.querySelector("#a2");
 var aThree = document.querySelector("#a3");
 var aFour =  document.querySelector("#a4");
 
+var questionBox = [
+    {q:"This is the first question.", choices:["1", "2", "3","4"], a: "1"},
+    {q:"This is the second question.", choices:["11", "22", "33","44"], a: "22"},
+    {q:"This is the third question.", choices:["5", "6", "7","8"], a: "7"},
+    {q:"This is the fourth question.", choices:["10", "20", "30","40"], a: "40"}
+];
 
-
- var questionIndex = 0;  
+var questionIndex = 0;  
 
 //create function to start game and timer
 function startGame() {
@@ -37,71 +42,93 @@ var startEl = document.querySelector("#start-button");
 startEl.addEventListener("click", startGame);
    
    
-    function question() {
-        var questionBox = [
-            {q:"This is the first question.", choices:["1", "2", "3","4"], a: "1"},
-            {q:"This is the second question.", choices:["11", "22", "33","44"], a: "22"},
-            {q:"This is the third question.", choices:["5", "6", "7","8"], a: "7"},
-            {q:"This is the fourth question.", choices:["10", "20", "30","40"], a: "40"}
-        ];
+function question() {
+    
+    if (questionIndex >= questionBox.length){
+        endGame();
+    }
+    else {
 
-        if (questionIndex >= questionBox.length){
-            endGame();
-        }
-        else {
-   
-        //display question    
-        questionContainer.textContent = questionBox[questionIndex].q; 
+    //display question    
+    questionContainer.textContent = questionBox[questionIndex].q; 
 
-        aOne.textContent= questionBox[questionIndex].choices[0];
-        aTwo.textContent= questionBox[questionIndex].choices[1];
-        aThree.textContent= questionBox[questionIndex].choices[2];
-        aFour.textContent= questionBox[questionIndex].choices[3];
+    aOne.textContent= questionBox[questionIndex].choices[0];
+    aTwo.textContent= questionBox[questionIndex].choices[1];
+    aThree.textContent= questionBox[questionIndex].choices[2];
+    aFour.textContent= questionBox[questionIndex].choices[3];
 
 
-       
-        console.log("index question"+ questionIndex);
+    
+    console.log("index question"+ questionIndex);
     }        
    
 };
 
-    function checkAnswer() {
-
-        var questionBox = [
-            {q:"This is the first question.", choices:["1", "2", "3","4"], a: "1"},
-            {q:"This is the second question.", choices:["11", "22", "33","44"], a: "22"},
-            {q:"This is the third question.", choices:["5", "6", "7","8"], a: "7"},
-            {q:"This is the fourth question.", choices:["10", "20", "30","40"], a: "40"}
-        ];
-
-        if (aOne.innerText == questionBox[questionIndex].a ||
-            aTwo.innerText == questionBox[questionIndex].a ||
-            aThree.innerText == questionBox[questionIndex].a ||
-            aFour.innerText == questionBox[questionIndex].a) 
-
-
-            {
-                var resultEl=document.getElementById("result");
-                    resultEl.textContent = "You are correct!";
-                    score++;  
-                    console.log(score);    
-            }
-            else{
-                var resultEl=document.getElementById("result");
-                resultEl.textContent = "You are wrong!";
-                timeLeft -=5;
-                console.log(timeLeft); 
-            }
-               questionIndex++;
-               question(); 
-    }  
-
-   
-aOne.addEventListener("click", checkAnswer);  
-aTwo.addEventListener("click",checkAnswer)
-aThree.addEventListener("click", checkAnswer); 
-aFour.addEventListener("click", checkAnswer); 
-
+//check if answers are correct   
+aOne.addEventListener("click", function(){
+    if (aOne.innerText == questionBox[questionIndex].a) {
+        var resultEl=document.getElementById("result");
+        resultEl.textContent = "You are correct!";
+        score++;  
+        console.log(score);    
+    }
+    else {
+        var resultEl=document.getElementById("result");
+        resultEl.textContent = "You are wrong!";
+        timeLeft -=5;
+        console.log(timeLeft); 
+     }
+    questionIndex++;
+    question(); 
+});
+aTwo.addEventListener("click",function(){
+    if(aTwo.innerText == questionBox[questionIndex].a ) {
+        var resultEl=document.getElementById("result");
+        resultEl.textContent = "You are correct!";
+        score++;  
+        console.log(score);    
+    }
+    else {
+        var resultEl=document.getElementById("result");
+        resultEl.textContent = "You are wrong!";
+        timeLeft -=5;
+        console.log(timeLeft); 
+    }
+    questionIndex++;
+    question();    
+});
+aThree.addEventListener("click", function(){
+    if (aThree.innerText == questionBox[questionIndex].a) {
+        var resultEl=document.getElementById("result");
+        resultEl.textContent = "You are correct!";
+        score++;  
+        console.log(score);    
+    }
+    else {
+        var resultEl=document.getElementById("result");
+        resultEl.textContent = "You are wrong!";
+        timeLeft -=5;
+        console.log(timeLeft); 
+    }
+    questionIndex++;
+    question(); 
+});
+aFour.addEventListener("click", function(){
+    if (aFour.innerText == questionBox[questionIndex].a) {
+        var resultEl=document.getElementById("result");
+        resultEl.textContent = "You are correct!";
+        score++;  
+        console.log(score);    
+    }
+    else {
+        var resultEl=document.getElementById("result");
+        resultEl.textContent = "You are wrong!";
+        timeLeft -=5;
+        console.log(timeLeft); 
+    }
+    questionIndex++;
+    question(); 
+});
 
 function endGame() {
     timeLeft = 0;
