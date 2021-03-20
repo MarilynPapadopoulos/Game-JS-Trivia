@@ -10,12 +10,7 @@ var aThree = document.querySelector("#a3");
 var aFour =  document.querySelector("#a4");
 
 
-var questionBox = [
-    {q:"This is the first question.", choices:["1", "2", "3","4"], a: "1"},
-    {q:"This is the second question.", choices:["11", "22", "33","44"], a: "22"},
-    {q:"This is the third question.", choices:["5", "6", "7","8"], a: "7"},
-    {q:"This is the fourth question.", choices:["10", "20", "30","40"], a: "40"}
-];
+
  var questionIndex = 0;  
 
 //create function to start game and timer
@@ -29,25 +24,32 @@ function startGame() {
             if(timeLeft <= 0) {
             clearInterval(timerId);
             }
-            timeEl.innerText = timeLeft;
-        
-            console.log(timeLeft);
+            timeEl.innerText = "Time left " +timeLeft;
+
          },1000)
     
     question();
 };
+
 
 var startEl = document.querySelector("#start-button");
 startEl.addEventListener("click", startGame);
    
    
     function question() {
+        var questionBox = [
+            {q:"This is the first question.", choices:["1", "2", "3","4"], a: "1"},
+            {q:"This is the second question.", choices:["11", "22", "33","44"], a: "22"},
+            {q:"This is the third question.", choices:["5", "6", "7","8"], a: "7"},
+            {q:"This is the fourth question.", choices:["10", "20", "30","40"], a: "40"}
+        ];
 
         if (questionIndex >= questionBox.length){
             endGame();
         }
         else {
    
+        //display question    
         questionContainer.textContent = questionBox[questionIndex].q; 
 
         aOne.textContent= questionBox[questionIndex].choices[0];
@@ -55,21 +57,28 @@ startEl.addEventListener("click", startGame);
         aThree.textContent= questionBox[questionIndex].choices[2];
         aFour.textContent= questionBox[questionIndex].choices[3];
 
-        questionIndex++;
+
+       
+        console.log("index question"+ questionIndex);
     }        
    
 };
 
     function checkAnswer() {
+       
+        var questionBox = [
+            {q:"This is the first question.", choices:["1", "2", "3","4"], a: "1"},
+            {q:"This is the second question.", choices:["11", "22", "33","44"], a: "22"},
+            {q:"This is the third question.", choices:["5", "6", "7","8"], a: "7"},
+            {q:"This is the fourth question.", choices:["10", "20", "30","40"], a: "40"}
+        ];
 
-    console.log(aOne.innerText);
-        if (aOne.innerText == questionBox[questionIndex].a ||
-            aTwo.innerText == questionBox[questionIndex].a ||
-            aThree.innerText == questionBox[questionIndex].a ||
-            aFour.innerText == questionBox[questionIndex].a) 
+    console.log("index check answer" + questionIndex);
 
-
-            {
+        if (aOne.innerText === questionBox[questionIndex].a ||
+            aTwo.innerText === questionBox[questionIndex].a ||
+            aThree.innerText === questionBox[questionIndex].a ||
+            aFour.innerText === questionBox[questionIndex].a) {
                 var resultEl=document.getElementById("result");
                     resultEl.textContent = "You are correct!";
                     score++;  
@@ -80,7 +89,8 @@ startEl.addEventListener("click", startGame);
                 resultEl.textContent = "You are wrong!";
                 timeLeft -=5;
                 console.log(timeLeft); 
-            } 
+            }
+            questionIndex++;
             question(); 
     }  
 
@@ -91,7 +101,7 @@ aThree.addEventListener("click", checkAnswer);
 aFour.addEventListener("click", checkAnswer); 
 
 
-function endGame () {
+function endGame() {
     timeLeft = 0;
     questionIndex = 0;
     aOne.textContent = "";
@@ -99,12 +109,14 @@ function endGame () {
     aThree.textContent = "";
     aFour.textContent = "";
     questionContainer.textContent = "";
+
+    showScore();
 }
 
 
 var initals;
 
-
+function showScore() {
 
 var displayScore = document.querySelector ("#highscore-page");
 var displayScoreEl = document.createElement("div");
@@ -126,6 +138,8 @@ var saveScore = function() {
     localStorage.setItem("highScore", JSON.stringify(score));
 }
 
+
+};
 
 
 
