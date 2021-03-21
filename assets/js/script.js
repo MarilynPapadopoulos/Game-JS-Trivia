@@ -21,9 +21,8 @@ var questionBox = [
 var questionIndex = 0;  
 
 //create function to start game and timer
-function startGame() {
-   
-    
+function startGame(e) {
+        e.preventDefault;
         var timeEl = document.getElementById("timer");
         var timerId = setInterval(function() {
         timeLeft -=1;
@@ -38,7 +37,6 @@ function startGame() {
     
     question();
 };
-
 
 var startEl = document.querySelector("#start-button");
 startEl.addEventListener("click", startGame);
@@ -67,14 +65,12 @@ aOne.addEventListener("click", function(){
     if (aOne.innerText == questionBox[questionIndex].a) {
         var resultEl=document.getElementById("result");
         resultEl.textContent = "You are correct!";
-        score++;  
-        console.log(score);    
+        score++;     
     }
     else {
         var resultEl=document.getElementById("result");
         resultEl.textContent = "You are wrong!";
         timeLeft -=5;
-        console.log(timeLeft); 
      }
     questionIndex++;
     question(); 
@@ -83,8 +79,7 @@ aTwo.addEventListener("click",function(){
     if(aTwo.innerText == questionBox[questionIndex].a ) {
         var resultEl=document.getElementById("result");
         resultEl.textContent = "You are correct!";
-        score++;  
-        console.log(score);    
+        score++;     
     }
     else {
         var resultEl=document.getElementById("result");
@@ -98,8 +93,7 @@ aThree.addEventListener("click", function(){
     if (aThree.innerText == questionBox[questionIndex].a) {
         var resultEl=document.getElementById("result");
         resultEl.textContent = "You are correct!";
-        score++;  
-        console.log(score);    
+        score++;    
     }
     else {
         var resultEl=document.getElementById("result");
@@ -113,8 +107,7 @@ aFour.addEventListener("click", function(){
     if (aFour.innerText == questionBox[questionIndex].a) {
         var resultEl=document.getElementById("result");
         resultEl.textContent = "You are correct!";
-        score++;  
-        console.log(score);    
+        score++;      
     }
     else {
         var resultEl=document.getElementById("result");
@@ -127,7 +120,7 @@ aFour.addEventListener("click", function(){
 
 function endGame() {
     timeLeft = 0;
-    // questionIndex = 0;
+    questionIndex = 0;
     // aOne.textContent = "";
     // aTwo.textContent = "";
     // aThree.textContent = "";
@@ -145,7 +138,7 @@ var displayScore = document.querySelector ("#scoreBoard");
 var displayScoreEl = document.createElement("div");
 displayScoreEl.textContent = "Your score is " + score + "!";
 displayScore.appendChild(displayScoreEl);
-console.log(score);
+
  };
 
 var scoreBoard =[];

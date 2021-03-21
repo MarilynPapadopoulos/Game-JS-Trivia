@@ -11,6 +11,7 @@ This project was and continues to be an excellent learing tool combining JavaScr
 
 ## URL 
 
+ https://marilynpapadopoulos.github.io/Game-JS-Trivia/
 
 ## Prerequisites
 
@@ -21,5 +22,8 @@ This project was and continues to be an excellent learing tool combining JavaScr
 
 The game commences by clicking the "Start" button.
 
-## Web Page Images
+## Web Page Image
+
+<img width="1440" alt="Screen Shot 2021-03-21 at 4 43 43 PM" src="https://user-images.githubusercontent.com/23453583/111920326-b56b4180-8a64-11eb-9387-4effd6f2b709.png">
+
 
