@@ -159,19 +159,24 @@ submitButton.addEventListener("click",function(e){
         score: score
     }
     console.log(userScore);
+    var scores = JSON.parse(localStorage.getItem("highScoreBoard"));
+    scores.push(userScore);
 
-    scoreBoard.push(userScore)
-    localStorage.setItem("highScoreBoard", JSON.stringify(scoreBoard));
+   
+    localStorage.setItem("highScoreBoard", JSON.stringify(scores));
 console.log(scoreBoard);
  
-    
-});  
 
-scores = JSON.parse(localStorage.getItem("highScoreBoard")); 
 var highScoresBoard = document.querySelector("#high-scores-board");
 var highScoresBoardEl =document.createElement("div");
 highScoresBoard.appendChild(highScoresBoardEl);
-highScoresBoard.textContent= scores;
+console.log(scores);
+highScoresBoard.textContent= scores.value;
+
+    
+});  
+
+
 
  
 
