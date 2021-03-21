@@ -1,19 +1,21 @@
 
 var timeLeft = 60;
-var score=0;
-
+var score=0; 
+var intials;
 var questionContainer = document.querySelector("#question");
 
 var aOne = document.querySelector("#a1");
 var aTwo = document.querySelector("#a2");
 var aThree = document.querySelector("#a3");
 var aFour =  document.querySelector("#a4");
+var submitButton = document.querySelector("#submit");
+var intialsInput =document.querySelector("#user-initials");
 
 var questionBox = [
     {q:"This is the first question.", choices:["1", "2", "3","4"], a: "1"},
-    {q:"This is the second question.", choices:["11", "22", "33","44"], a: "22"},
-    {q:"This is the third question.", choices:["5", "6", "7","8"], a: "7"},
-    {q:"This is the fourth question.", choices:["10", "20", "30","40"], a: "40"}
+    {q:"This is the second question.", choices:["One", "Two", "Three","Four"], a: "Two"},
+    {q:"This is the third question.", choices:["I", "II", "III","IV"], a: "III"},
+    {q:"This is the fourth question.", choices:["1ST", "2ND", "3RD","4TH"], a: "4TH"}
 ];
 
 var questionIndex = 0;  
@@ -56,10 +58,6 @@ function question() {
     aTwo.textContent= questionBox[questionIndex].choices[1];
     aThree.textContent= questionBox[questionIndex].choices[2];
     aFour.textContent= questionBox[questionIndex].choices[3];
-
-
-    
-    console.log("index question"+ questionIndex);
     }        
    
 };
@@ -92,7 +90,6 @@ aTwo.addEventListener("click",function(){
         var resultEl=document.getElementById("result");
         resultEl.textContent = "You are wrong!";
         timeLeft -=5;
-        console.log(timeLeft); 
     }
     questionIndex++;
     question();    
@@ -107,8 +104,7 @@ aThree.addEventListener("click", function(){
     else {
         var resultEl=document.getElementById("result");
         resultEl.textContent = "You are wrong!";
-        timeLeft -=5;
-        console.log(timeLeft); 
+        timeLeft -=5; 
     }
     questionIndex++;
     question(); 
@@ -123,8 +119,7 @@ aFour.addEventListener("click", function(){
     else {
         var resultEl=document.getElementById("result");
         resultEl.textContent = "You are wrong!";
-        timeLeft -=5;
-        console.log(timeLeft); 
+        timeLeft -=5; 
     }
     questionIndex++;
     question(); 
@@ -132,50 +127,53 @@ aFour.addEventListener("click", function(){
 
 function endGame() {
     timeLeft = 0;
-    questionIndex = 0;
-    aOne.textContent = "";
-    aTwo.textContent = "";
-    aThree.textContent = "";
-    aFour.textContent = "";
-    questionContainer.textContent = "";
+    // questionIndex = 0;
+    // aOne.textContent = "";
+    // aTwo.textContent = "";
+    // aThree.textContent = "";
+    // aFour.textContent = "";
+    // questionContainer.textContent = "";
 
-    showScore();
-}
+     saveScore();
+ }
 
 
-var initals;
 
-function showScore() {
+function saveScore() {
 
-var displayScore = document.querySelector ("#highscore-page");
+var displayScore = document.querySelector ("#scoreBoard");
 var displayScoreEl = document.createElement("div");
-displayScoreEl.innerText = "Your score is " + score + "!";
+displayScoreEl.textContent = "Your score is " + score + "!";
 displayScore.appendChild(displayScoreEl);
+console.log(score);
+ };
 
-var getInitialsEl = document.createElement("form");
-getInitialsEl.setAttribute ("type", "text");
-getInitialsEl.setAttribute ("type", "Submit");
-displayScore.appendChild(getInitialsEl);
+var scoreBoard =[];
 
+submitButton.addEventListener("click",function(e){
+    e.preventDefault(); 
+    console.log(intialsInput.value);
+    console.log(score); 
+    var userScore  = {
+        intials: intialsInput.value, 
+        score: score
+    }
+    console.log(userScore);
 
-/*var highScore=[];
-var highScoreObj  = {
-    intials: initials, score: score
-}
-*/
-var saveScore = function() {
-    localStorage.setItem("highScore", JSON.stringify(score));
-}
-
-
-};
-
-
-
-
+    scoreBoard.push(userScore)
+    localStorage.setItem("highScoreBoard", JSON.stringify(scoreBoard));
+console.log(scoreBoard);
+ 
     
+});  
 
+scores = JSON.parse(localStorage.getItem("highScoreBoard")); 
+var highScoresBoard = document.querySelector("#high-scores-board");
+var highScoresBoardEl =document.createElement("div");
+highScoresBoard.appendChild(highScoresBoardEl);
+highScoresBoard.textContent= scores;
 
+ 
 
 
 
